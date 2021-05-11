@@ -4,20 +4,22 @@ html
   head
     title= title
     link(rel='stylesheet' href='/main.css')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
   body
     header
       if req.isAuthenticated()
+        span(class="toggle-nav-secondary") ☰
+        
         +nav('/b/add', '+', 'button')
 
         +nav('/', 'All')
         each quickView in quickViews
           +nav(`/v/${quickView.id}`, quickView.name)
         
-        +nav-separator
-        
-        +nav('/t', 'Tags')
-        +nav('/settings', 'Settings')
-        +nav('/logout', 'Logout')
+        div(class="nav-secondary")
+          +nav('/t', 'Tags')
+          +nav('/settings', 'Settings')
+          +nav('/logout', 'Logout')
 
       br
       if filterTags
@@ -25,3 +27,13 @@ html
         each tag in filterTags
           +tag(tag)
     block content
+    
+    script.
+      document.querySelector('.toggle-nav-secondary').addEventListener('click', event => {
+        const navSecondary = document.querySelector('.nav-secondary')
+        if (!navSecondary.classList.contains('active')) {
+          navSecondary.classList.add('active')
+        } else {
+          navSecondary.classList.remove('active')
+        }
+      })

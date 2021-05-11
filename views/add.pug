@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  p Add bookmark
+  h1 Add bookmark
   form(method='POST' action='/b/add')
     input(type='text' name='url' placeholder='URL' value=url)
     br
@@ -9,7 +9,7 @@ block content
     br
     input(type='text' name='tags' placeholder='Tags')
     br
-    input(type='submit' value='add')
+    input(type='submit' value='Add')
   
   script.
     const tags = !{JSON.stringify(tags.map(tag => tag.name))}

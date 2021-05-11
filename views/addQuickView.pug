@@ -1,10 +1,10 @@
 extends layout
 
 block content
-  p Add quick view
+  h1 Add filter
   form(method='POST' action='/v/add')
     input(type='text' name='name' placeholder='Name')
     br
     input(type='text' name='tags' placeholder='Tags')
     br
-    input(type='submit' value='add')
+    input(type='submit' value='Add')

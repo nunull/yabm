@@ -13,9 +13,6 @@ mixin bookmark(bookmark)
 mixin nav(path, name, classes)
   a(href=path, class=(req.url.split('?')[0] === path ? 'active' : '') + ' ' + classes)= name
   
-mixin nav-separator
-  span &#10072;
-
 mixin tag(tag)
   if filterTags && filterTags.indexOf(tag) === -1
     a(href=`/t/${filterTags.join('+')}+${tag}` class='tag')
