@@ -1,16 +1,24 @@
 :root {
   --main-bg1: #111;
   --main-bg2: #222;
+  --main-bg3: #444;
   --main-fg1: #808080;
   --main-fg2: white;
-  --accent1-bg: blue;
+  
+  --accent1-bg: rgb(25, 98, 120);
   --accent1-fg: white;
 }
 
 * {
   font-family: sans-serif;
   line-height: 1.5em;
+  font-size: 12pt;
   color: var(--main-fg1);
+}
+h1 {
+  font-size: 18pt;
+  color: var(--main-fg2);
+  font-weight: normal;
 }
 a {
   margin-right: 8px;
@@ -36,7 +44,6 @@ header {
 }
 header .nav-secondary {
   display: inline-block;
-  border-left: solid 2px var(--main-bg2);
   padding-left: 10px;
 }
 header .toggle-nav-secondary {
@@ -48,24 +55,62 @@ header .toggle-nav-secondary {
 .active {
   font-weight: bold;
 }
-.tag, .button, input[type="submit"] {
+
+/* buttons etc */
+
+.tag,
+.button,
+input[type="submit"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   cursor: pointer;
   display: inline-block;
   background: var(--main-bg2);
+  border: solid 2px var(--main-bg2);
   border-radius: 12px;
-  padding: 0px 6px;
-  font-size: 10pt;
+  padding: 0 6px;
+  
   text-decoration: none;
-  color: var(--main-fg2);
+  color: var(--main-fg1);
   margin-bottom: 5px;
   margin-right: 10px;
 }
+.tag,
+.tag *,
+.button,
+input[type="submit"] {
+  font-size: 10pt;
+}
+.tag span {
+  margin: 0;
+}
+.button.round {
+  font-size: 14pt;
+  width: 18px;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+}
+@media only screen and (max-width: 900px) {
+  .tag,
+  .button,
+  input[type="submit"] {
+    font-size: 12pt;
+  }
+}
+form .button,
 form input[type="submit"] {
   margin-top: 10px;
-  border-radius: 2px;
+  border-radius: 3px;
+  /* font-size: 1em; */
+  font-size: 10pt;
+  padding: 6px 10px;
+  border: none;
+  /* border: solid 2px var(--accent1-bg); */
 }
 .tag .action {
-  border-right: solid 1px var(--main-fg1);
+  border-right: solid 1px var(--main-bg3);
   border-radius: 50% 0 0 50%;
   width: 20px;
   height: 20px;
@@ -78,13 +123,10 @@ form input[type="submit"] {
   margin-top: 8px;
 }
 .button, input[type="submit"] {
-  background: var(--accent1-bg);
+  /* background: var(--accent1-bg); */
+  background: none;
   border-color: var(--accent1-bg);
   color: var(--accent1-fg);
-}
-.button.active {
-  background: blue;
-  color: white;
 }
 input[type="text"], input[type="password"] {
   width: 100%;
@@ -95,18 +137,21 @@ input[type="text"], input[type="password"] {
   color: var(--main-fg2);
   background: var(--main-bg2);
 }
-input[type="submit"] {
-  font-size: 1em;
-  padding: 4px 8px;
-  border-radius: 22px;
-  border: solid 2px var(--accent1-bg);
-}
+
 code {
   font-family: monospace;
 }
 @media only screen and (max-width: 900px) {
+  * {
+    font-size: 14pt;
+  }
   body {
     margin: 10px;
+  }
+  header .button {
+    font-size: 20pt;
+    /* padding: 0 14px 4px 14px; */
+    /* border-radius: 50%; */
   }
   header .toggle-nav-secondary {
     z-index: 100;
@@ -116,6 +161,11 @@ code {
   }
   header .nav-secondary {
     display: none;
+  }
+  header .nav-secondary > * {
+    display: block;
+    padding-top: 7px;
+    padding-bottom: 7px;
   }
   header .nav-secondary.active {
     display: inline-block;
@@ -127,5 +177,8 @@ code {
     border: none;
     padding: 10px;
     background: var(--main-bg1);
+  }
+  header .nav-secondary .nav-separator {
+    visibility: hidden;
   }
 }

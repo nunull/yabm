@@ -10,13 +10,15 @@ html
       if req.isAuthenticated()
         span(class="toggle-nav-secondary") ☰
         
-        +nav('/b/add', '+', 'button')
-
-        +nav('/', 'All')
-        each quickView in quickViews
-          +nav(`/v/${quickView.id}`, quickView.name)
+        +nav('/b/add', '+', 'button round')
         
         div(class="nav-secondary")
+          +nav('/', 'All')
+          each quickView in quickViews
+            +nav(`/v/${quickView.id}`, quickView.name)
+            
+          +nav-separator
+          
           +nav('/t', 'Tags')
           +nav('/settings', 'Settings')
           +nav('/logout', 'Logout')

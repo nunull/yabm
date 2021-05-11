@@ -1,7 +1,8 @@
 extends layout
 
 block content
-  p= bookmark.description
+  h1= bookmark.description
+  p= bookmark.relativeDate()
 
   form(method='POST' action=`/b/${bookmark.id}/edit`)
     input(type='text' name='url' value=bookmark.url placeholder='URL')
@@ -12,3 +13,4 @@ block content
     label separate tags with spaces
     br
     input(type='submit' value='Save')
+    a(href=`/b/${bookmark.id}/delete` class='button') Delete

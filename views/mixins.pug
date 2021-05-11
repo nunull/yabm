@@ -6,12 +6,15 @@ mixin bookmark(bookmark)
         each tag in bookmark.tagsList()
           +tag(tag)
         a(href=`/b/${bookmark.id}/edit` class='button') edit
-        a(href=`/b/${bookmark.id}/delete` class='button') delete
-        br
-        span= bookmark.relativeDate()
+        //- a(href=`/b/${bookmark.id}/delete` class='button') delete
+        //- br
+        //- span= bookmark.relativeDate()
 
 mixin nav(path, name, classes)
   a(href=path, class=(req.url.split('?')[0] === path ? 'active' : '') + ' ' + classes)= name
+        
+mixin nav-separator
+  span(class='nav-separator') &#10072;
   
 mixin tag(tag)
   if filterTags && filterTags.indexOf(tag) === -1
