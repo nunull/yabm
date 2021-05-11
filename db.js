@@ -1,9 +1,11 @@
 const moment = require('moment')
 const { Sequelize, Model, DataTypes } = require('sequelize')
-const sequelize = new Sequelize(process.env.DATABASE_URL || {
-  dialect: 'sqlite',
-  storage: 'data/db.sqlite'
-})
+const sequelize = process.env.DATABASE_URL ?
+  new Sequelize(process.env.DATABASE_URL, { native: true }) :
+  new Sequelize({
+    dialect: 'sqlite',
+    storage: 'data/db.sqlite'
+  })
 
 
 
