@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+mv data/db.sqlite data/db-backup.sqlite
+
+bin/create-user abc def
+bin/import-from-pinboard abc ./pinboard_export.2020.11.23_09.07.json

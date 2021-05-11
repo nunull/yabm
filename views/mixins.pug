@@ -1,0 +1,29 @@
+mixin bookmark(bookmark)
+  li(class='bookmark')
+    a(href=bookmark.url target='_blank' class='title')= bookmark.description
+    if !quickView
+      div(class='controls')
+        each tag in bookmark.tagsList()
+          +tag(tag)
+        a(href=`/b/${bookmark.id}/edit` class='button') edit
+        a(href=`/b/${bookmark.id}/delete` class='button') delete
+        br
+        span= bookmark.relativeDate()
+
+mixin nav(path, name, classes)
+  a(href=path, class=(req.url.split('?')[0] === path ? 'active' : '') + ' ' + classes)= name
+  
+mixin nav-separator
+  span &#10072;
+
+mixin tag(tag)
+  if filterTags && filterTags.indexOf(tag) === -1
+    a(href=`/t/${filterTags.join('+')}+${tag}` class='tag')
+      span(class='action') +
+      span= tag
+  else if filterTags
+    a(href=`/t/${filterTags.filter(t => t !== tag).join('+')}` class='tag')
+      span(class='action') -
+      span= tag
+  else
+    a(href=`/t/${tag}` class='tag')= tag

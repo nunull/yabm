@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  div
+    p
+      a(href='/v/add' class='button') +
+      | Quick views
+
+    each quickView in quickViews
+      li
+        a(href=`/v/${quickView.id}` class='title')= quickView.name
+        div(class='controls')
+          a(href=`/v/${quickView.id}/edit` class='button') edit
+          a(href=`/v/${quickView.id}/delete` class='button') delete
+
+  div
+    p Bookmarklet
+    code(id='bookmarklet').
+      javascript:open(`WINDOW_LOCATION_ORIGIN/b/add?url=${encodeURIComponent(location.href)}&description=${encodeURIComponent(document.title)}`)
+    script.
+      const element = document.querySelector('#bookmarklet')
+      let bookmarklet = element.innerText
+      bookmarklet = bookmarklet.replace('WINDOW_LOCATION_ORIGIN', window.location.origin)
+      element.innerText = bookmarklet

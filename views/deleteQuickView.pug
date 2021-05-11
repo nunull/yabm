@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  p= quickView.name
+
+  form(method='POST' action=`/v/${quickView.id}/delete`)
+    input(type='submit' value='delete')

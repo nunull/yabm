@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  div
+    each tag in tags
+      a(href=`/t/${tag.name}`)= `${tag.name} (${tag.bookmarks.length})`
+      br

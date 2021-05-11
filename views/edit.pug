@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  p= bookmark.description
+
+  form(method='POST' action=`/b/${bookmark.id}/edit`)
+    input(type='text' name='url' value=bookmark.url placeholder='URL')
+    br
+    input(type='text' name='description' value=bookmark.description placeholder='Description')
+    br
+    input(type='text' name='tags' value=bookmark.tags placeholder='Tags')
+    br
+    input(type='submit' value='save')

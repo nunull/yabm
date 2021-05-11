@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  p Add bookmark
+  form(method='POST' action='/b/add')
+    input(type='text' name='url' placeholder='URL' value=url)
+    br
+    input(type='text' name='description' placeholder='Description' value=description)
+    br
+    input(type='text' name='tags' placeholder='Tags')
+    br
+    input(type='submit' value='add')
+  
+  script.
+    const tags = !{JSON.stringify(tags.map(tag => tag.name))}
+    
+    document.querySelector('input[name="url"]').addEventListener('input', event => {
+      console.log(event.target.value)
+      fetch(`/web-page-title/${encodeURIComponent(event.target.value)}`)
+        .then(response => {
+          if (response.status !== 200) throw Error(response.status)
+          return response.text()
+        })
+        .then(title => {
+          document.querySelector('input[name="description"]').value = title
+          
+          const tagsElement = document.querySelector('input[name="tags"]')
+          let currentTags = tagsElement.value.split(' ')
+          for (let tag of tags) {
+            if (title.toLowerCase().indexOf(tag.toLowerCase()) !== -1 && currentTags.indexOf(tag.toLowerCase()) === -1) {
+              currentTags.push(tag)
+            }
+          }
+          console.log(title)
+          
+          tagsElement.value = currentTags.filter(t => t).join(' ')
+        })
+    })

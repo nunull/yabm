@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  p Add quick view
+  form(method='POST' action='/v/add')
+    input(type='text' name='name' placeholder='Name')
+    br
+    input(type='text' name='tags' placeholder='Tags')
+    br
+    input(type='submit' value='add')

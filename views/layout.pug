@@ -1,0 +1,27 @@
+include mixins
+
+html
+  head
+    title= title
+    link(rel='stylesheet' href='/main.css')
+  body
+    header
+      if req.isAuthenticated()
+        +nav('/b/add', '+', 'button')
+
+        +nav('/', 'All')
+        each quickView in quickViews
+          +nav(`/v/${quickView.id}`, quickView.name)
+        
+        +nav-separator
+        
+        +nav('/t', 'Tags')
+        +nav('/settings', 'Settings')
+        +nav('/logout', 'Logout')
+
+      br
+      if filterTags
+        span= 'Tags: '
+        each tag in filterTags
+          +tag(tag)
+    block content

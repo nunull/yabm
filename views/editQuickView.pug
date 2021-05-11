@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  p= quickView.name
+
+  form(method='POST' action=`/v/${quickView.id}/edit`)
+    input(type='text' name='name' value=quickView.name placeholder='Name')
+    br
+    input(type='text' name='tags' value=quickView.tags placeholder='Tags')
+    br
+    input(type='submit' value='save')

@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  p= bookmark.description
+
+  form(method='POST' action=`/b/${bookmark.id}/delete`)
+    input(type='submit' value='delete')
